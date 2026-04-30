@@ -1,0 +1,90 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liked Photos</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+    <span class="nav-logo">NASApics</span>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Search</a>
+      <a href="liked.html" class="nav-link active">
+        Liked
+        <span class="liked-count" id="nav-liked-count"></span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <header class="hero">
+    <h1 class="hero-title">Liked Photos</h1>
+    <p class="hero-sub">Your saved NASA images</p>
+  </header>
+
+  <!-- MAIN CONTENT -->
+
+  <main class="container">
+
+```
+<!-- Toolbar (shown only when items exist) -->
+<div id="liked-toolbar" class="hidden">
+  <button id="clear-all-btn" class="btn btn-outline">
+    Clear All
+  </button>
+</div>
+
+<!-- Status text -->
+<p id="liked-status" class="status-bar"></p>
+
+<!-- Empty state -->
+<div id="empty-state" class="empty-state hidden">
+  <p>You haven’t liked any images yet.</p>
+  <a href="index.html" class="btn btn-primary">Browse Images</a>
+</div>
+
+<!-- GALLERY (JS injects cards here) -->
+<div id="liked-gallery" class="gallery"></div>
+```
+
+  </main>
+
+  <!-- MODAL -->
+
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <img id="modal-img" class="modal-img" src="" alt="" />
+      <div class="modal-body">
+        <h2 id="modal-title" class="modal-title"></h2>
+        <p id="modal-meta" class="modal-meta"></p>
+        <p id="modal-desc" class="modal-desc"></p>
+
+```
+    <div class="modal-actions">
+      <button id="modal-like-btn" class="btn btn-like">
+        &#9829; Unlike
+      </button>
+      <a id="modal-nasa-link" class="btn btn-outline" target="_blank">
+        View on NASA &#8599;
+      </a>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script src="liked.js" defer></script>
+
+</body>
+</html>

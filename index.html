@@ -4,8 +4,91 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API Full Stack Project</title>
+    <link rel="stylesheet" href="index.css">
   </head>
-  <body>
-    <!-- You code goes here-->
-  </body>
+<body>
+ 
+  <nav class="navbar">
+    <span class="nav-logo">NASApics</span>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Search</a>
+      <a href="liked.html" class="nav-link">
+        Liked
+        <span class="liked-count" id="nav-liked-count"></span>
+      </a>
+    </div>
+  </nav>
+ 
+  <header class="hero">
+    <h1 class="hero-title">Explore the Universe</h1>
+    <p class="hero-sub">Browse NASA's extensive media library</p>
+  </header>
+ 
+  <main class="container">
+    <form class="search-form" id="search-form">
+      <div class="search-row">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search: nebula, Apollo 11, Mars rover..."
+          autocomplete="off"
+        />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="year-start">From</label>
+          <select id="year-start" class="select"></select>
+        </div>
+        <div class="filter-group">
+          <label for="year-end">To</label>
+          <select id="year-end" class="select"></select>
+        </div>
+        <div class="filter-group">
+          <label for="media-type">Type</label>
+          <select id="media-type" class="select">
+            <option value="image">Images</option>
+            <option value="video">Video</option>
+            <option value="">All</option>
+          </select>
+        </div>
+      </div>
+    </form>
+ 
+    <p class="status-bar" id="status-bar"></p>
+ 
+    <div class="spinner hidden" id="spinner">
+      <div class="spinner-ring"></div>
+    </div>
+ 
+    <div class="gallery" id="gallery"></div>
+ 
+    <div class="load-more-wrap" id="load-more-wrap">
+      <button class="btn btn-outline" id="load-more-btn">Load More</button>
+    </div>
+  </main>
+ 
+  <!-- Detail modal -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <img class="modal-img" id="modal-img" src="" alt="" />
+      <div class="modal-body">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <p class="modal-meta" id="modal-meta"></p>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-actions">
+          <button class="btn btn-like" id="modal-like-btn">&#9825; Like</button>
+          <a class="btn btn-outline" id="modal-nasa-link" href="" target="_blank" rel="noopener">
+            View on NASA &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="app.js"></script>
+</body>
 </html>
+ 
