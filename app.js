@@ -1,12 +1,8 @@
-// =========================================================
-//  app.js — Search page logic
-// =========================================================
-
 const NASA_API   = 'https://images-api.nasa.gov/search';
 const STORAGE_KEY = 'cosmos_liked';
 const PAGE_SIZE  = 24;
 
-// --- DOM refs ---
+// DOM referencs
 const form        = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 const yearStart   = document.getElementById('year-start');
@@ -28,15 +24,16 @@ const modalDesc    = document.getElementById('modal-desc');
 const modalLikeBtn = document.getElementById('modal-like-btn');
 const modalNasaLink= document.getElementById('modal-nasa-link');
 
-// --- State ---
+// Current state
 let currentPage  = 1;
 let currentQuery = '';
 let totalHits    = 0;
 let currentItem  = null;  // item currently open in modal
 
-// =========================================================
-//  LocalStorage helpers
-// =========================================================
+
+
+
+//  LocalStorage helper functions
 
 function getLiked() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -76,9 +73,7 @@ function toggleLike(item) {
   return !!liked[nasaId];
 }
 
-// =========================================================
-//  UI helpers
-// =========================================================
+// UUI functions
 
 function updateNavCount() {
   const count = Object.keys(getLiked()).length;
@@ -101,9 +96,7 @@ function fmtDate(str) {
   });
 }
 
-// =========================================================
-//  Year filter population
-// =========================================================
+// Year filters
 
 (function populateYears() {
   const now = new Date().getFullYear();
@@ -117,10 +110,8 @@ function fmtDate(str) {
   yearEnd.value = now;
 })();
 
-// =========================================================
-//  Build API URL
-// =========================================================
 
+// URL Builder
 function buildUrl(query, page) {
   const params = new URLSearchParams({
     q        : query,
@@ -133,10 +124,8 @@ function buildUrl(query, page) {
   return `${NASA_API}?${params}`;
 }
 
-// =========================================================
-//  Render a single card
-// =========================================================
 
+// Image renderer
 function renderCard(item) {
   const data  = item.data[0];
   const thumb = getThumb(item.links);
@@ -200,9 +189,7 @@ function renderCard(item) {
   return card;
 }
 
-// =========================================================
-//  Modal
-// =========================================================
+// modal
 
 function openModal(item) {
   currentItem = item;
@@ -248,9 +235,7 @@ modalLikeBtn.addEventListener('click', () => {
   modalLikeBtn.classList.toggle('liked', nowLiked);
 });
 
-// =========================================================
-//  Fetch & render results
-// =========================================================
+// API call and renderer
 
 async function fetchImages(query, page, append) {
   if (!append) {
@@ -299,9 +284,7 @@ async function fetchImages(query, page, append) {
   }
 }
 
-// =========================================================
-//  Event listeners
-// =========================================================
+// Event listeners
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -317,9 +300,5 @@ loadMoreBtn.addEventListener('click', () => {
   loadMoreWrap.classList.add('hidden');
   fetchImages(currentQuery, currentPage, true);
 });
-
-// =========================================================
-//  Init
-// =========================================================
 
 updateNavCount();

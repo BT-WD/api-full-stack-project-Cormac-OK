@@ -1,10 +1,7 @@
-// =========================================================
-//  liked.js — Liked photos page logic
-// =========================================================
 
 const STORAGE_KEY = 'cosmos_liked';
 
-// --- DOM refs ---
+// DOM references
 const likedGallery = document.getElementById('liked-gallery');
 const likedStatus  = document.getElementById('liked-status');
 const emptyState   = document.getElementById('empty-state');
@@ -23,9 +20,7 @@ const modalNasaLink= document.getElementById('modal-nasa-link');
 
 let currentNasaId = null;
 
-// =========================================================
-//  LocalStorage helpers
-// =========================================================
+//  LocalStorage helper function
 
 function getLiked() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -43,10 +38,8 @@ function unlike(nasaId) {
   updateNavCount();
 }
 
-// =========================================================
-//  UI helpers
-// =========================================================
 
+// UI helper functions
 function updateNavCount() {
   const count = Object.keys(getLiked()).length;
   if (navCount) {
@@ -62,10 +55,7 @@ function fmtDate(str) {
   });
 }
 
-// =========================================================
-//  Render liked gallery
-// =========================================================
-
+// Render liked images
 function renderGallery() {
   const liked = getLiked();
   const items = Object.values(liked);
@@ -143,10 +133,7 @@ function renderGallery() {
   likedGallery.appendChild(frag);
 }
 
-// =========================================================
 //  Modal
-// =========================================================
-
 function openModal(entry) {
   currentNasaId = entry.nasa_id;
 
@@ -187,9 +174,7 @@ modalLikeBtn.addEventListener('click', () => {
   renderGallery();
 });
 
-// =========================================================
-//  Clear all
-// =========================================================
+//  Clear library button
 
 clearAllBtn.addEventListener('click', () => {
   if (!confirm('Remove all liked photos?')) return;
@@ -198,9 +183,6 @@ clearAllBtn.addEventListener('click', () => {
   renderGallery();
 });
 
-// =========================================================
-//  Init
-// =========================================================
 
 updateNavCount();
 renderGallery();
